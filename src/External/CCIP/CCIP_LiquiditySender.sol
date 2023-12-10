@@ -4,7 +4,7 @@ pragma solidity 0.8.22;
 import {OwnerIsCreator} from "@chainlink-ccip/contracts-ccip/src/v0.8/shared/access/OwnerIsCreator.sol";
 import {IRouterClient} from "@chainlink-ccip/contracts-ccip/src/v0.8/ccip/interfaces/IRouterClient.sol";
 import {Client} from "@chainlink-ccip/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
-import {IERC20} from "@chainlink-ccip/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/token/ERC20/IERC20.sol";
+import {IERC20} from "@chainlink-ccip/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/contracts/token/ERC20/IERC20.sol";
 import {LinkTokenInterface} from "@chainlink/contracts/src/v0.8/shared/interfaces/LinkTokenInterface.sol";
 import "forge-std/console.sol";
 
@@ -75,7 +75,7 @@ contract CCIP_LiquiditySender {
             data: abi.encode(_fcInvocation, _annuity, msg.sender), // Call _fcInvocation selctor on destination liq connector which in turn should call mirrored fc sig on Annuity protocol
             tokenAmounts: tokenAmounts,
             extraArgs: Client._argsToBytes(
-                Client.EVMExtraArgsV1({gasLimit: _gasLimit, strict: false})
+                Client.EVMExtraArgsV1({gasLimit: _gasLimit})
             ),
             feeToken: address(linkToken)
         });
